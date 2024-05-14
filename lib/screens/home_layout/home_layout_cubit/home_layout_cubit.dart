@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_udemy_course/core/app_strings.dart';
 import 'package:news_udemy_course/core/cache_data.dart';
-import 'package:news_udemy_course/home_layout/home_layout_cubit/home_layout_states.dart';
+import 'package:news_udemy_course/screens/home_layout/home_layout_cubit/home_layout_states.dart';
 
 class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
   HomeLayoutCubit() : super(HomeLayoutInitialState());
