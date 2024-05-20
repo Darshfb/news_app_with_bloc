@@ -13,9 +13,7 @@ class AppRouter {
       case AppStrings.layout:
         return MaterialPageRoute(builder: (_) => BlocProvider(
             create: (BuildContext context) => sl<NewsBloc>()..add(HomeEvent()),
-            child: const HomeLayout()));
-        case AppStrings.secondScreen:
-        return MaterialPageRoute(builder: (_) => const SecondScreen());
+            child:  HomeLayout()));
       default:
         return MaterialPageRoute(
             builder: (_) =>  Scaffold(

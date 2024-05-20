@@ -17,4 +17,5 @@ class NewsRepo {
         .toList();
     return news;
   }
+
 }
