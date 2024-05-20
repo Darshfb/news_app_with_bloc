@@ -23,4 +23,11 @@ casue the cashed variable = null
     SharedData.saveData(key: AppStrings.appTheme, value: isDark);
     emit(ChangeThemeModeState());
   }
+
+  int currentIndex = 0;
+
+  void changeNavBar({required int index}){
+    currentIndex = index;
+    emit(ChangeNavBarState());
+  }
 }
