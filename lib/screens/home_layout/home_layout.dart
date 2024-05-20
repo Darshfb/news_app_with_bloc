@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_udemy_course/core/app_strings.dart';
 import 'package:news_udemy_course/screens/category/category_screen.dart';
 import 'package:news_udemy_course/screens/home_layout/home_layout_cubit/home_layout_cubit.dart';
+import 'package:news_udemy_course/screens/home_screen/home_screen.dart';
 import 'package:news_udemy_course/screens/widgets/list_widget.dart';
 
 class HomeLayout extends StatelessWidget {
@@ -31,7 +32,7 @@ final pageController = PageController();
         },
         controller: pageController,
         children: const [
-          NewsList(),
+          HomeScreen(),
           CategoryScreen(),
         ],
       ),

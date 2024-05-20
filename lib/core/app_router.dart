@@ -5,7 +5,6 @@ import 'package:news_udemy_course/bloc/news_events.dart';
 import 'package:news_udemy_course/core/app_strings.dart';
 import 'package:news_udemy_course/di.dart';
 import 'package:news_udemy_course/screens/home_layout/home_layout.dart';
-import 'package:news_udemy_course/screens/second_screen.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings settings) {

@@ -10,7 +10,18 @@ class NewsRepo {
   Future<List<NewsModel>> getHomeData() async {
     final response = await _apiConsumer.get(
       ApiConstants.headlineEndPoint,
-      queryParameters: ApiConstants.query,
+      queryParameters: ApiConstants.query(),
+    );
+    final List<NewsModel> news = response["articles"]
+        .map<NewsModel>((article) => NewsModel.fromJson(article))
+        .toList();
+    return news;
+  }
+
+    Future<List<NewsModel>> getCategoryData({required String category}) async {
+    final response = await _apiConsumer.get(
+      ApiConstants.headlineEndPoint,
+      queryParameters: ApiConstants.query(category: category),
     );
     final List<NewsModel> news = response["articles"]
         .map<NewsModel>((article) => NewsModel.fromJson(article))
