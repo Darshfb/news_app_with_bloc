@@ -31,9 +31,9 @@ class _CategoryScreenState extends State<CategoryScreen>
     return Column(
       children: [
         Container(
-          color: Colors.red,
+          color: Colors.blue,
           child: TabBar(
-            isScrollable: false,
+            isScrollable: true,
             controller: controller,
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorWeight: 5,
@@ -43,7 +43,11 @@ class _CategoryScreenState extends State<CategoryScreen>
             },
             unselectedLabelStyle:
                 TextStyle(fontSize: 12.0, color: Colors.black.withOpacity(.5)),
-            labelStyle: const TextStyle(fontSize: 13.0, color: Colors.purple),
+            labelStyle: const TextStyle(
+              fontSize: 13.0,
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+            ),
             labelColor: Colors.white,
             tabs: CategoryList.categoryItems
                 .map((category) => Tab(
@@ -55,23 +59,22 @@ class _CategoryScreenState extends State<CategoryScreen>
         ),
         Expanded(
           child: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
             controller: controller,
             children: CategoryList.categoryItems.map(
               (category) {
                 return BlocBuilder<NewsBloc, NewsStates>(
                     builder: (context, state) {
-                  if (state is CategoryLoadingState) {
+                  if (state.categoryStatus == NewsStatus.loading) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state is CategorySucessState) {
-                    return NewsList(news: state.news);
-                  } else if (state is CategoryErrorState) {
+                  } else if (state.homeStatus == NewsStatus.error) {
                     return Center(
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
-                          state.error,
+                          state.categoryError,
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: Colors.red,
@@ -82,7 +85,9 @@ class _CategoryScreenState extends State<CategoryScreen>
                       ),
                     );
                   } else {
-                    return const SizedBox();
+                    return SingleChildScrollView(
+                      child: NewsList(news: state.categoryNewsList),
+                    );
                   }
                 });
               },

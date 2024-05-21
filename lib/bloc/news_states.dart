@@ -1,27 +1,39 @@
 import 'package:news_udemy_course/data/news_model.dart';
 
-abstract class NewsStates {}
+enum NewsStatus { loading, success, error }
 
-class NewsInitialState extends NewsStates {}
+class NewsStates {
+  final NewsStatus homeStatus;
+  final NewsStatus categoryStatus;
+  final List<NewsModel> homeNewsList;
+  final List<NewsModel> categoryNewsList;
+  final String homeError;
+  final String categoryError;
 
-class HomeSuccessState extends NewsStates {}
+  NewsStates({
+    this.homeStatus = NewsStatus.loading,
+    this.categoryStatus = NewsStatus.loading,
+    this.homeNewsList = const [],
+    this.categoryNewsList = const [],
+    this.homeError = '',
+    this.categoryError = '',
+  });
 
-class HomeLoadingState extends NewsStates {}
-
-class HomeErrorState extends NewsStates {
-  final String error;
-
-  HomeErrorState({required this.error});
+  NewsStates copyWith({
+    NewsStatus? homeStatus,
+    NewsStatus? categoryStatus,
+    List<NewsModel>? homeNewsList,
+    List<NewsModel>? categoryNewsList,
+    String? homeError,
+    String? categoryError,
+  }) {
+    return NewsStates(
+      homeStatus: homeStatus ?? this.homeStatus,
+      categoryStatus: categoryStatus ?? this.categoryStatus,
+      homeNewsList: homeNewsList ?? this.homeNewsList,
+      categoryNewsList: categoryNewsList ?? this.categoryNewsList,
+      homeError: homeError ?? this.homeError,
+      categoryError: categoryError ?? this.categoryError,
+    );
+  }
 }
-
-class CategorySucessState extends NewsStates {
-  List<NewsModel> news = [];
-  CategorySucessState({required this.news});
-}
-
-class CategoryErrorState extends NewsStates {
-  final String error;
-  CategoryErrorState({required this.error});
-}
-
-class CategoryLoadingState extends NewsStates {}

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:news_udemy_course/data/news_model.dart';
 
 class NewsList extends StatelessWidget {
-   const NewsList({super.key, required this.news});
+  const NewsList({super.key, required this.news});
   final List<NewsModel> news;
 
   @override
   Widget build(BuildContext context) {
-     return ListView.builder(
+    return Column(
+      children: [
+        ListView.builder(
           itemCount: news.length,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             return Card(
               child: Container(
@@ -41,6 +45,14 @@ class NewsList extends StatelessWidget {
               ),
             );
           },
-        );
-      }
+        ),
+        MaterialButton(
+          color: Colors.teal,
+          minWidth: double.infinity,
+          onPressed: () {},
+          child: const Text("Load more"),
+        )
+      ],
+    );
+  }
 }

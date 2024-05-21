@@ -4,9 +4,11 @@ class ApiConstants {
   static String baseUrl = "https://newsapi.org/v2/";
   static String headlineEndPoint = "top-headlines";
 
-  static Map<String, dynamic> query({String? category})=> {
-    "country": "us",
-    "category": category ?? "sports",
-    "apiKey": "c6863f9ec5e14cc399ce5d61ea3257fa"
-  };
+  static Map<String, dynamic> query({String? category, int? page}) => {
+        "country": "us",
+        "category": category ?? "sports",
+        "apiKey": "c6863f9ec5e14cc399ce5d61ea3257fa",
+        "pageSize": 10,
+        "page": page ?? 1
+      };
 }

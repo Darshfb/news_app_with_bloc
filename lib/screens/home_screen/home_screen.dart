@@ -11,17 +11,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewsBloc, NewsStates>(
       builder: (context, state) {
-        final news = context.watch<NewsBloc>().news;
-        if (state is HomeLoadingState) {
+        if (state.homeStatus == NewsStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (state is HomeErrorState) {
+        } else if (state.homeStatus == NewsStatus.error) {
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Text(
-                state.error,
+                state.homeError,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       color: Colors.red,
                       fontSize: 20,
@@ -31,7 +30,10 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return NewsList(news: news,);
+        return SingleChildScrollView(
+            child: NewsList(
+          news: state.homeNewsList,
+        ));
       },
     );
   }

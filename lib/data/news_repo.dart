@@ -9,11 +9,11 @@ class NewsRepo {
 
   NewsRepo(this._apiConsumer);
 
-  Future<Either<Failure, List<NewsModel>>> getHomeData() async {
+  Future<Either<Failure, List<NewsModel>>> getHomeData({int? page}) async {
     try {
       final response = await _apiConsumer.get(
         ApiConstants.headlineEndPoint,
-        queryParameters: ApiConstants.query(),
+        queryParameters: ApiConstants.query(page: page ?? 1),
       );
       final List<NewsModel> news = response["articles"]
           .map<NewsModel>((article) => NewsModel.fromJson(article))
@@ -25,12 +25,17 @@ class NewsRepo {
     }
   }
 
-  Future<Either<Failure, List<NewsModel>>> getCategoryData(
-      {required String category}) async {
+  Future<Either<Failure, List<NewsModel>>> getCategoryData({
+    required String category,
+    int? page,
+  }) async {
     try {
       final response = await _apiConsumer.get(
         ApiConstants.headlineEndPoint,
-        queryParameters: ApiConstants.query(category: category),
+        queryParameters: ApiConstants.query(
+          category: category,
+          page: page ?? 1,
+        ),
       );
       final List<NewsModel> news = response["articles"]
           .map<NewsModel>((article) => NewsModel.fromJson(article))
