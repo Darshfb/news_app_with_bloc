@@ -66,8 +66,23 @@ class _CategoryScreenState extends State<CategoryScreen>
                     );
                   } else if (state is CategorySucessState) {
                     return NewsList(news: state.news);
+                  } else if (state is CategoryErrorState) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          state.error,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Colors.red,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                        ),
+                      ),
+                    );
                   } else {
-                    return Container();
+                    return const SizedBox();
                   }
                 });
               },

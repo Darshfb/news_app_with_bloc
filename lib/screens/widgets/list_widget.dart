@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_udemy_course/bloc/news_bloc.dart';
-import 'package:news_udemy_course/bloc/news_states.dart';
 import 'package:news_udemy_course/data/news_model.dart';
 
 class NewsList extends StatelessWidget {

@@ -12,15 +12,20 @@ class NewsBloc extends Bloc<NewsEvents, NewsStates> {
     on<HomeEvent>((event, emit) async {
       // Loading state
       emit(HomeLoadingState());
-      news = await _newsRepo.getHomeData();
-      emit(HomeSuccessState());
+      final response = await _newsRepo.getHomeData();
+      response.fold((left) => emit(HomeErrorState(error: left.message)),
+          (listOfNews) {
+        news = listOfNews;
+        return emit(HomeSuccessState());
+      });
     });
 
     on<CategoryEvent>((event, emit) async {
       // loading state
       emit(CategoryLoadingState());
       final success = await _newsRepo.getCategoryData(category: event.category);
-      emit(CategorySucessState(news: success));
+      success.fold((l) => emit(CategoryErrorState(error: l.message)),
+          (r) => emit(CategorySucessState(news: r)));
     });
   }
 }
