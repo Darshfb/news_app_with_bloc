@@ -65,7 +65,8 @@ class _CategoryScreenState extends State<CategoryScreen>
               (category) {
                 return BlocBuilder<NewsBloc, NewsStates>(
                     builder: (context, state) {
-                  if (state.categoryStatus == NewsStatus.loading) {
+                  if (state.categoryStatus == NewsStatus.loading &&
+                      state.categoryNewsList.isEmpty) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -85,8 +86,12 @@ class _CategoryScreenState extends State<CategoryScreen>
                       ),
                     );
                   } else {
-                    return SingleChildScrollView(
-                      child: NewsList(news: state.categoryNewsList),
+                    return NewsList(
+                      news: state.categoryNewsList,
+                      loadMore: () {
+                        BlocProvider.of<NewsBloc>(context)
+                            .add(CategoryEvent(category: category));
+                      },
                     );
                   }
                 });
