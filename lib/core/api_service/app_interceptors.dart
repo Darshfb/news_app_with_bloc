@@ -5,7 +5,7 @@ class AppInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers["Accept"] = "*/*";
-
+    debugPrint("HeaderUrr : ${options.uri}");
     super.onRequest(options, handler);
   }
 
