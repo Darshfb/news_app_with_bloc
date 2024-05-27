@@ -33,7 +33,7 @@ class NewsBloc extends Bloc<NewsEvents, NewsStates> {
       // loading state
       emit(state.copyWith(categoryStatus: NewsStatus.loading));
       final success =
-          await _newsRepo.getCategoryData(category: event.category, page: categoryPage ++);
+          await _newsRepo.getCategoryData(category: event.category, page: categoryPage);
       success.fold((l) {
         emit(state.copyWith(
             categoryError: l.message, categoryStatus: NewsStatus.error));

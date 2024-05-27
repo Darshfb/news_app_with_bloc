@@ -40,8 +40,6 @@ class _CategoryScreenState extends State<CategoryScreen>
             onTap: (int index) {
               BlocProvider.of<NewsBloc>(context).add(
                   CategoryEvent(category: CategoryList.categoryItems[index]));
-              BlocProvider.of<NewsBloc>(context).state.categoryNewsList.clear();
-              BlocProvider.of<NewsBloc>(context).categoryPage = 1;
             },
             unselectedLabelStyle:
                 TextStyle(fontSize: 12.0, color: Colors.black.withOpacity(.5)),
