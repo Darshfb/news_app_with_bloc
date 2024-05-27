@@ -50,6 +50,8 @@ class _CategoryScreenState extends State<CategoryScreen>
               color: Colors.red,
               fontWeight: FontWeight.bold,
             ),
+            tabAlignment: TabAlignment.start,
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             labelColor: Colors.white,
             tabs: CategoryList.categoryItems
                 .map((category) => Tab(

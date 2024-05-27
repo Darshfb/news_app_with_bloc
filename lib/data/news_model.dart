@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:news_udemy_course/core/app_strings.dart';
 
-class NewsModel {
+class NewsModel extends Equatable {
   String? title, author, urlToImage, publishedAt, description;
 
   NewsModel({
@@ -20,4 +21,23 @@ class NewsModel {
       publishedAt: json['publishedAt'] ?? "",
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "title": title,
+      "author": author,
+      "urlToImage": urlToImage,
+      "publishedAt": publishedAt,
+      "description": description
+    };
+  }
+
+  @override
+  List<Object?> get props => [
+        title,
+        author,
+        urlToImage,
+        description,
+        publishedAt,
+      ];
 }

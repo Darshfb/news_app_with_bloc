@@ -17,7 +17,7 @@ class AppInterceptors extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    debugPrint("Response: ${err.response!.data}");
+    //debugPrint("Response: ${err.response!.data}");
 
     super.onError(err, handler);
   }

@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_udemy_course/core/app_router.dart';
@@ -13,7 +14,7 @@ void main() async {
   await SharedData.init();
   Bloc.observer = MyBlocObserver();
   await init();
-
+  //SharedData.clearData();
   runApp(MyApp());
 }
 

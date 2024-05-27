@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<NewsBloc, NewsStates>(
       buildWhen: ((previous, current) => previous != current),
       builder: (context, state) {
-        print("HomeStatus: ${state.homeStatus}");
+       
         if (state.homeStatus == NewsStatus.loading &&
             state.homeNewsList.isEmpty) {
           return const Center(
