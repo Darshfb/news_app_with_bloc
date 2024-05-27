@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_udemy_course/bloc/news_bloc.dart';
-import 'package:news_udemy_course/bloc/news_events.dart';
 import 'package:news_udemy_course/bloc/news_states.dart';
 import 'package:news_udemy_course/screens/widgets/list_widget.dart';
 
@@ -11,11 +10,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewsBloc, NewsStates>(
-      buildWhen: ((previous, current) => previous != current),
       builder: (context, state) {
-        print("HomeStatus: ${state.homeStatus}");
-        if (state.homeStatus == NewsStatus.loading &&
-            state.homeNewsList.isEmpty) {
+        if (state.homeStatus == NewsStatus.loading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -34,12 +30,10 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return NewsList(
-                  news: state.homeNewsList,
-                  loadMore: () {
-        BlocProvider.of<NewsBloc>(context).add(HomeEvent());
-                  },
-                );
+        return SingleChildScrollView(
+            child: NewsList(
+          news: state.homeNewsList,
+        ));
       },
     );
   }
