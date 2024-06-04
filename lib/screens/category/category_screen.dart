@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_udemy_course/bloc/news_bloc.dart';
 import 'package:news_udemy_course/bloc/news_events.dart';
 import 'package:news_udemy_course/bloc/news_states.dart';
+import 'package:news_udemy_course/core/app_strings.dart';
+import 'package:news_udemy_course/core/cache_data.dart';
 import 'package:news_udemy_course/core/category_list.dart';
 import 'package:news_udemy_course/screens/widgets/list_widget.dart';
 
@@ -20,10 +22,10 @@ class _CategoryScreenState extends State<CategoryScreen>
   @override
   void initState() {
     super.initState();
-    controller =
-        TabController(length: CategoryList.categoryItems.length, vsync: this);
-    BlocProvider.of<NewsBloc>(context)
-        .add(CategoryEvent(category: CategoryList.categoryItems[0]));
+    controller = TabController(length: CategoryList.categoryItems.length, vsync: this);
+
+      BlocProvider.of<NewsBloc>(context).add(CategoryEvent(category: CategoryList.categoryItems[0]));
+
   }
 
   @override

@@ -28,7 +28,6 @@ class _NewsListState extends State<NewsList> {
 
   @override
   void initState() {
-    print("hellowworld");
     controller.addListener(_scrollListener);
     super.initState();
   }

@@ -15,8 +15,7 @@ class RemoteDataSource {
         queryParameters: ApiConstants.query(page: page ?? 1),
       );
       final List<NewsModel> news = response["articles"]
-          .map<NewsModel>((article) => NewsModel.fromJson(article))
-          .toList();
+        .map<NewsModel>((article) => NewsModel.fromJson(article)).toList();
       return news;
     } on ServerException catch (e) {
       print("there is an erro here check it ${e.toString()}");

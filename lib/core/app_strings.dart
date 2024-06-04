@@ -9,6 +9,5 @@ class AppStrings {
   static const String category = "Category";
   static const String baseUrl = "c6863f9ec5e14cc399ce5d61ea3257fa";
   static const String cacheHome = "cacheHome";
-    static const String cacheCategory = "cacheCategory";
-
+  static const String cacheCategory = "cacheCategory";
 }

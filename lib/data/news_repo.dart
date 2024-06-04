@@ -36,12 +36,9 @@ class NewsRepo {
     try {
       final categoryNews = await _localDataSource.getCategoryNews(category);
       if (categoryNews.isNotEmpty && page == 1) {
-        print("ThiscategoryNews from local ${categoryNews.length}");
-
         return Right(categoryNews);
       } else {
-        print("PageNumber ${page}");
-
+        print("mostafamahmoudaboads => ${categoryNews.length} => $page");
         final remoteCategoryNews = await _remoteDataSource.getCategoryData(
             page: page, category: category);
         if (page == 1) {

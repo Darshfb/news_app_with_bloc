@@ -6,10 +6,11 @@ import 'package:news_udemy_course/screens/home_layout/home_layout_cubit/home_lay
 import 'package:news_udemy_course/screens/home_screen/home_screen.dart';
 
 class HomeLayout extends StatelessWidget {
-   HomeLayout({super.key});
-final pageController = PageController();
+  HomeLayout({super.key});
+  final pageController = PageController();
   @override
   Widget build(BuildContext context) {
+    print("Hello mostafa mahmoud 2 ");
     return Scaffold(
       appBar: AppBar(
         title: const Text("News App"),
@@ -25,9 +26,8 @@ final pageController = PageController();
         ],
       ),
       body: PageView(
-        onPageChanged: (index){
-                    context.read<HomeLayoutCubit>().changeNavBar(index: index);
-
+        onPageChanged: (index) {
+          context.read<HomeLayoutCubit>().changeNavBar(index: index);
         },
         controller: pageController,
         children: const [
@@ -39,7 +39,7 @@ final pageController = PageController();
         type: BottomNavigationBarType.fixed,
         currentIndex: context.read<HomeLayoutCubit>().currentIndex,
         selectedItemColor: Colors.deepPurple,
-        onTap: (index){
+        onTap: (index) {
           context.read<HomeLayoutCubit>().changeNavBar(index: index);
           pageController.jumpToPage(index);
         },

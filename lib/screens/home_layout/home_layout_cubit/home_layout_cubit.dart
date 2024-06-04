@@ -19,7 +19,6 @@ casue the cashed variable = null
   // To toggle between two values of boolens we will use exclamation mark "!"
   void changeThemeMode() {
     isDark = !isDark;
-    debugPrint(isDark.toString());
     SharedData.saveData(key: AppStrings.appTheme, value: isDark);
     emit(ChangeThemeModeState());
   }

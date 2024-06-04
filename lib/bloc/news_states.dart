@@ -11,7 +11,7 @@ class NewsStates extends Equatable {
   final String homeError;
   final String categoryError;
 
-  NewsStates({
+  const NewsStates({
     this.homeStatus = NewsStatus.loading,
     this.categoryStatus = NewsStatus.loading,
     this.homeNewsList = const [],

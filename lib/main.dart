@@ -1,6 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:news_udemy_course/core/app_router.dart';
 import 'package:news_udemy_course/core/app_strings.dart';
 import 'package:news_udemy_course/core/bloc_observer.dart';
@@ -10,12 +10,15 @@ import 'package:news_udemy_course/screens/home_layout/home_layout_cubit/home_lay
 import 'package:news_udemy_course/screens/home_layout/home_layout_cubit/home_layout_states.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+    WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+    FlutterNativeSplash.remove();
+
   await SharedData.init();
   Bloc.observer = MyBlocObserver();
   await init();
-  //SharedData.clearData();
   runApp(MyApp());
+    FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
